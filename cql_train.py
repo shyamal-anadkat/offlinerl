@@ -48,8 +48,9 @@ def main(args):
 
     cql.fit(train_episodes,
             eval_episodes=test_episodes,
-            n_steps=10000,
-            n_steps_per_epoch=1000,
+            # n_steps=10000,
+            # n_steps_per_epoch=1000,
+            n_epochs=10,
             save_interval=10,
             scorers={
                 'environment': evaluate_on_environment(env),
