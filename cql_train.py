@@ -32,9 +32,11 @@ def main(args):
 
     device = None if args.gpu is None else Device(args.gpu)
 
+    print("=========================")
     print("Q FUNQ :  ", args.q_func)
     print("USE GPU : ", device)
     print("DATASET : ", args.dataset)
+    print("=========================")
 
     cql = CQL(actor_learning_rate=1e-4,
               critic_learning_rate=3e-4,
@@ -49,19 +51,14 @@ def main(args):
 
     cql.fit(train_episodes,
             eval_episodes=test_episodes,
-            # n_steps=10000,
-            # n_steps_per_epoch=1000,
             n_epochs=10,
             save_interval=10,
             scorers={
                 'environment': evaluate_on_environment(env),
                 'init_value': initial_state_value_estimation_scorer,
-                'td_error': td_error_scorer,
-                'discounted_advantage': discounted_sum_of_advantage_scorer,
-                'value_scale': average_value_estimation_scorer,
-                'value_std': value_estimation_std_scorer,
-                'action_diff': continuous_action_diff_scorer
             },
+            with_timestamp=False,
+            verbose=True,
             experiment_name=f"CQL_{args.dataset}_{args.seed}")
 
 
