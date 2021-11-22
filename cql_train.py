@@ -51,7 +51,7 @@ def main(args):
 
     cql.fit(train_episodes,
             eval_episodes=test_episodes,
-            n_epochs=10,
+            n_epochs=args.epochs,
             save_interval=10,
             scorers={
                 'environment': evaluate_on_environment(env),
@@ -68,6 +68,7 @@ if __name__ == '__main__':
                         type=str,
                         default='hopper-bullet-mixed-v0')
     parser.add_argument('--seed', type=int, default=1)
+    parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--q-func',
                         type=str,
                         default='mean',
