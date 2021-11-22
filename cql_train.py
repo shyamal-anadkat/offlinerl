@@ -6,6 +6,7 @@ from d3rlpy.datasets import get_pybullet
 from d3rlpy.metrics.scorer import evaluate_on_environment
 from d3rlpy.metrics.scorer import td_error_scorer
 from d3rlpy.metrics.scorer import discounted_sum_of_advantage_scorer
+from d3rlpy.metrics.scorer import initial_state_value_estimation_scorer
 from d3rlpy.metrics.scorer import average_value_estimation_scorer
 from d3rlpy.metrics.scorer import continuous_action_diff_scorer
 from d3rlpy.metrics.scorer import value_estimation_std_scorer
@@ -54,6 +55,7 @@ def main(args):
             save_interval=10,
             scorers={
                 'environment': evaluate_on_environment(env),
+                'init_value': initial_state_value_estimation_scorer,
                 'td_error': td_error_scorer,
                 'discounted_advantage': discounted_sum_of_advantage_scorer,
                 'value_scale': average_value_estimation_scorer,
