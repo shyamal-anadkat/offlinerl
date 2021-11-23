@@ -73,6 +73,7 @@ def main(args):
               use_gpu=device,
               encoder_params={'hidden_units': [1024, 1024, 1024, 1024]})
     fqe.fit(dataset.episodes,
+            n_epochs=args.epochs_fqe,
             eval_episodes=dataset.episodes,
             scorers={
                 'init_value': initial_state_value_estimation_scorer,
