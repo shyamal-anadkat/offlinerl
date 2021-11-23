@@ -2,6 +2,7 @@ import argparse
 import d3rlpy
 
 from d3rlpy.algos import CQL
+from d3rlpy.ope import FQE
 from d3rlpy.datasets import get_pybullet
 from d3rlpy.metrics.scorer import evaluate_on_environment
 from d3rlpy.metrics.scorer import td_error_scorer
@@ -12,6 +13,7 @@ from d3rlpy.metrics.scorer import continuous_action_diff_scorer
 from d3rlpy.metrics.scorer import value_estimation_std_scorer
 from d3rlpy.gpu import Device
 from sklearn.model_selection import train_test_split
+from d3rlpy.metrics.scorer import soft_opc_scorer
 
 
 def main(args):
@@ -36,6 +38,8 @@ def main(args):
     print("Q FUNQ :  ", args.q_func)
     print("USE GPU : ", device)
     print("DATASET : ", args.dataset)
+    print("EPOCHS (CQL) : ", args.epochs_cql)
+    print("EPOCHS (FQE) : ", args.epochs_fqe)
     print("=========================")
 
     cql = CQL(actor_learning_rate=1e-4,
@@ -51,7 +55,7 @@ def main(args):
 
     cql.fit(train_episodes,
             eval_episodes=test_episodes,
-            n_epochs=args.epochs,
+            n_epochs=args.epochs_cql,
             save_interval=10,
             scorers={
                 'environment': evaluate_on_environment(env),
@@ -61,6 +65,23 @@ def main(args):
             verbose=True,
             experiment_name=f"CQL_{args.dataset}_{args.seed}")
 
+    # evaluate the trained policy
+    fqe = FQE(algo=cql,
+              n_epochs=args.epochs_fqe,
+              q_func_factory='qr',
+              learning_rate=1e-4,
+              use_gpu=device,
+              encoder_params={'hidden_units': [1024, 1024, 1024, 1024]})
+    fqe.fit(dataset.episodes,
+            eval_episodes=dataset.episodes,
+            scorers={
+                'init_value': initial_state_value_estimation_scorer,
+                'soft_opc': soft_opc_scorer(600)
+            },
+            with_timestamp=False,
+            verbose=True,
+            experiment_name=f"FQE_{args.dataset}_{args.seed}")
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -68,7 +89,8 @@ if __name__ == '__main__':
                         type=str,
                         default='hopper-bullet-mixed-v0')
     parser.add_argument('--seed', type=int, default=1)
-    parser.add_argument('--epochs', type=int, default=10)
+    parser.add_argument('--epochs_cql', type=int, default=10)
+    parser.add_argument('--epochs_fqe', type=int, default=10)
     parser.add_argument('--q-func',
                         type=str,
                         default='mean',
