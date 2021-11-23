@@ -58,7 +58,9 @@ def main(args):
             n_epochs=args.epochs_cql,
             save_interval=10,
             scorers={
+                # Returns scorer function of evaluation on environment (mean_episode_return)
                 'environment': evaluate_on_environment(env),
+                # Returns mean estimated action-values at the initial states
                 'init_value': initial_state_value_estimation_scorer,
             },
             with_timestamp=False,
@@ -76,7 +78,9 @@ def main(args):
             n_epochs=args.epochs_fqe,
             eval_episodes=dataset.episodes,
             scorers={
+                # Returns mean estimated action-values at the initial states
                 'init_value': initial_state_value_estimation_scorer,
+                # Returns Soft Off-Policy Classification metrics
                 'soft_opc': soft_opc_scorer(600)
             },
             with_timestamp=False,
