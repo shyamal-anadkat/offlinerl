@@ -63,7 +63,8 @@ def main(args):
                 'environment': evaluate_on_environment(env),
                 # Returns mean estimated action-values at the initial states
                 'init_value': initial_state_value_estimation_scorer,
-                "true_q_value": true_q_value_scorer, #TODO(test)
+                # Returns true q values
+                "true_q_value": true_q_value_scorer
             },
             with_timestamp=False,
             verbose=True,
@@ -83,7 +84,9 @@ def main(args):
                 # Returns mean estimated action-values at the initial states
                 'init_value': initial_state_value_estimation_scorer,
                 # Returns Soft Off-Policy Classification metrics
-                'soft_opc': soft_opc_scorer(600)
+                'soft_opc': soft_opc_scorer(600),
+                # Returns true q values
+                "true_q_value": true_q_value_scorer
             },
             with_timestamp=False,
             verbose=True,

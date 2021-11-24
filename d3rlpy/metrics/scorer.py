@@ -70,7 +70,6 @@ def _make_batches(
         yield batch
 
 
-
 def true_q_value_scorer(algo: AlgoProtocol, episodes: List[Episode]) -> float:
     for episode in episodes:
         for batch in _make_batches(episode, WINDOW_SIZE, algo.n_frames):
