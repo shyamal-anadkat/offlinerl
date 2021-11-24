@@ -8,6 +8,7 @@ from d3rlpy.metrics.scorer import evaluate_on_environment
 from d3rlpy.metrics.scorer import td_error_scorer
 from d3rlpy.metrics.scorer import discounted_sum_of_advantage_scorer
 from d3rlpy.metrics.scorer import initial_state_value_estimation_scorer
+from d3rlpy.metrics.scorer import true_q_value_scorer
 from d3rlpy.metrics.scorer import average_value_estimation_scorer
 from d3rlpy.metrics.scorer import continuous_action_diff_scorer
 from d3rlpy.metrics.scorer import value_estimation_std_scorer
@@ -62,6 +63,7 @@ def main(args):
                 'environment': evaluate_on_environment(env),
                 # Returns mean estimated action-values at the initial states
                 'init_value': initial_state_value_estimation_scorer,
+                "true_q_value": true_q_value_scorer, #TODO(test)
             },
             with_timestamp=False,
             verbose=True,
