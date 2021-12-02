@@ -35,6 +35,7 @@ def main(args):
 
     device = None if args.gpu is None else Device(args.gpu)
 
+    # logging for debugging
     print("=========================")
     print("Q FUNQ :  ", args.q_func)
     print("USE GPU : ", device)

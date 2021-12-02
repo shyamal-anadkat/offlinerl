@@ -1,12 +1,31 @@
-
 # Deep Reinforcement Learning 
 
-Here is a link to my blog post on Reinforcement Learning: 
-https://shyamalanadkat.medium.com/reinforcement-learning-a-primer-29116d487e42
+Hello! Before diving in, I would recommend getting familiarized with basic Reinforcement Learning. 
+Here is a link to my blog post on Reinforcement Learning to get you started: 
+[RL Primer](https://shyamalanadkat.medium.com/reinforcement-learning-a-primer-29116d487e42)
 
-## Example Usage
+## _TLDR_ - Example Usage 
+
+Customized to training CQL on a custom dataset in d3rlpy, and training OPE (FQE) to 
+evaluate the trained policy. 
+
+---
+
+1. Execute `cql_train.py` found at the root of the project
+ - Default dataset is `hopper-bullet-mixed-v0`. For example if we want to run for 10 epochs: `python cql_train.py --epochs_cql 10 --epochs_fqe 10`
+2. Important Logs:
+ - Estimated Q values vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/init_value.csv`
+ - Average reward vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/environment.csv`
+ - True Q values vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/true_q_value.csv`
+3. Examples speak more so:  [Jupyter notebook example](https://colab.research.google.com/drive/1S5RDTwaqVjA4wAJISxApra_G0ewSuS0R?usp=sharing) 
+
+---
+# Getting Started 
+
+## Why d3rlpy?
 d3rlpy is an offline deep reinforcement learning library for practitioners and researchers.
 
+## How do I use it? 
 ```py
 import d3rlpy
 
@@ -28,8 +47,9 @@ actions = sac.predict(x)
 - Documentation: https://d3rlpy.readthedocs.io
 - Paper: https://arxiv.org/abs/2111.03788
 
-## Installation
-d3rlpy supports Linux, macOS and Windows.
+## How do I instal d3rlpy? 
+
+d3rlpy supports Linux, macOS and Windows. There are several ways: 
 
 ### PyPI (recommended)
 [![PyPI version](https://badge.fury.io/py/d3rlpy.svg)](https://badge.fury.io/py/d3rlpy)
@@ -45,10 +65,9 @@ $ pip install d3rlpy
 $ conda install -c conda-forge d3rlpy
 ```
 
-## examples
-### MuJoCo
-<p align="center"><img align="center" width="160px" src="assets/mujoco_hopper.gif"></p>
+## Show me some more examples ? 
 
+### MuJoCo
 ```py
 import d3rlpy
 
@@ -67,12 +86,9 @@ cql.fit(dataset,
             'td_error': d3rlpy.metrics.td_error_scorer
         })
 ```
-
 See more datasets at [d4rl](https://github.com/rail-berkeley/d4rl).
 
 ### Atari 2600
-<p align="center"><img align="center" width="160px" src="assets/breakout.gif"></p>
-
 ```py
 import d3rlpy
 from sklearn.model_selection import train_test_split
@@ -95,7 +111,6 @@ cql.fit(train_episodes,
             'td_error': d3rlpy.metrics.td_error_scorer
         })
 ```
-
 See more Atari datasets at [d4rl-atari](https://github.com/takuseno/d4rl-atari).
 
 ### PyBullet
@@ -122,30 +137,11 @@ cql.fit(dataset,
 
 See more PyBullet datasets at [d4rl-pybullet](https://github.com/takuseno/d4rl-pybullet).
 
-### Online Training
-```py
-import d3rlpy
-import gym
-
-# prepare environment
-env = gym.make('HopperBulletEnv-v0')
-eval_env = gym.make('HopperBulletEnv-v0')
-
-# prepare algorithm
-sac = d3rlpy.algos.SAC(use_gpu=True)
-
-# prepare replay buffer
-buffer = d3rlpy.online.buffers.ReplayBuffer(maxlen=1000000, env=env)
-
-# start training
-sac.fit_online(env, buffer, n_steps=1000000, eval_env=eval_env)
-```
-
-## Tutorials
+## How about some tutorials? 
 Try a cartpole example on Google Colaboratory:
 
 - offline RL tutorial: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takuseno/d3rlpy/blob/master/tutorials/cartpole.ipynb)
-- online RL tutorial: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takuseno/d3rlpy/blob/master/tutorials/online.ipynb)
+
 
 ## Citation
 The paper is available [here](https://arxiv.org/abs/2111.03788).
@@ -158,7 +154,6 @@ The paper is available [here](https://arxiv.org/abs/2111.03788).
   year = {2021}
 }
 ```
-
 ## Acknowledgement
 This work is supported by Information-technology Promotion Agency, Japan
 (IPA), Exploratory IT Human Resources Project (MITOU Program) in the fiscal
