@@ -76,7 +76,7 @@ def true_q_value_scorer(algo: AlgoProtocol, episodes: List[Episode]) -> float:
             # estimate values for next observations
             next_actions = algo.predict(batch.next_observations[0])
             next_values = algo.predict_value(
-                batch.next_observations, next_actions
+                batch.next_observations[0], next_actions
             )
             mask = (1.0 - np.asarray(batch.terminals)).reshape(-1)
             rewards = np.asarray(batch.next_rewards).reshape(-1)
