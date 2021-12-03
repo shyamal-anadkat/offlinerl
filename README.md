@@ -4,6 +4,8 @@ Hello! Before diving in, I would recommend getting familiarized with basic Reinf
 Here is a link to my blog post on Reinforcement Learning to get you started: 
 [RL Primer](https://shyamalanadkat.medium.com/reinforcement-learning-a-primer-29116d487e42)
 
+**Also, if you're an AIPI530 student, and if this repo helps I don't mind some beer money/bitcoin LOL** 
+
 ## _TLDR_ - Example Usage 
 
 Customized to training CQL on a custom dataset in d3rlpy, and training OPE (FQE) to 
