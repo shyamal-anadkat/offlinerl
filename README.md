@@ -1,33 +1,73 @@
 # Deep Reinforcement Learning 
+### _Shyamal Anadkat | Fall '21_
 
-Hello! Before diving in, I would recommend getting familiarized with basic Reinforcement Learning. 
+Hello! This is a repository for AIPI530 DeepRL final project (fall 2021). 
+The goal is to build a pipeline for offline RL. 
+The starter code has been forked from [d3rlpy](https://github.com/takuseno/d3rlpy) (_see citation at the bottom_)
+
+Before diving in, I would recommend getting familiarized with basic Reinforcement Learning. 
 Here is a link to my blog post on Reinforcement Learning to get you started: 
 [RL Primer](https://shyamalanadkat.medium.com/reinforcement-learning-a-primer-29116d487e42)
 
-**Also, if you're an AIPI530 student, and if this repo helps I don't mind some beer money/bitcoin LOL. JK!** 
+The blog post briefly covers the following: 
 
-## _TLDR_ - Example Usage 
+* What is reinforcement learning ? 
+* What are the pros and cons of reinforcement learning ?
+* When should we consider applying reinforcement learning (and when should not) ? 
+* What's the difference between supervised learning and reinforcement learning ? 
+* What is offline reinforcement learning ? What are the pros and cons of offline reinforcement learning ?
+* When should we consider applying offline reinforcement learning (and when should not) ?
+* Have an example of offline reinforcement learning in the real-world  
 
-Customized to training CQL on a custom dataset in d3rlpy, and training OPE (FQE) to 
-evaluate the trained policy. 
+# Getting Started (_please read carefully_)
+
+This project is customized to training CQL on a custom dataset in d3rlpy, and training OPE (FQE) to 
+evaluate the trained policy. `cql_train.py` at the root of the project is the main script. 
+
+### How do I install & run this project ? 
 
 ---
+1. Clone this repository: `git clone https://github.com/shyamal-anadkat/offlinerl`
+2. Install **pybullet** from source: `pip install git+https://github.com/takuseno/d4rl-pybullet`
+3. Install requirements: `pip install Cython numpy` & `pip install -e`
+4. Execute **`cql_train.py`** found at the root of the project
+   * Default dataset is `hopper-bullet-mixed-v0` 
+   * For example if we want to run for 10 epochs: `python cql_train.py --epochs_cql 10 --epochs_fqe 10` 
+   (see colab example below for more clarity)
+5. **Important Logs:**
+   * Estimated Q values vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/init_value.csv`
+   * Average reward vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/environment.csv`
+   * True Q values vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/true_q_value.csv`
+   (I created my own scorer to calculate the true q values. See `scorer.py` for implementation details)
+   
 
-1. Execute `cql_train.py` found at the root of the project
- - Default dataset is `hopper-bullet-mixed-v0`. For example if we want to run for 10 epochs: `python cql_train.py --epochs_cql 10 --epochs_fqe 10`
-2. Important Logs:
- - Estimated Q values vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/init_value.csv`
- - Average reward vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/environment.csv`
- - True Q values vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/true_q_value.csv`
-3. Examples speak more so:  [Jupyter notebook example](https://colab.research.google.com/drive/1S5RDTwaqVjA4wAJISxApra_G0ewSuS0R?usp=sharing) 
+### Sample Plots: 
+![img.png](cql_plot.png)
+![img.png](fqe_plot.png)
+
+### Examples speak more: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1S5RDTwaqVjA4wAJISxApra_G0ewSuS0R?usp=sharing) 
 
 ---
-# Getting Started 
-
 ## Why d3rlpy?
-d3rlpy is an offline deep reinforcement learning library for practitioners and researchers.
 
-## How do I use it? 
+d3rlpy is an offline deep reinforcement learning library for practitioners and researchers.
+- Documentation: https://d3rlpy.readthedocs.io
+- Paper: https://arxiv.org/abs/2111.03788
+
+### How do I install d3rlpy? 
+
+d3rlpy supports Linux, macOS and Windows. d3rlpy is not only easy, but also completely compatible with scikit-learn API, 
+which means that you can maximize your productivity with the useful scikit-learn's utilities.
+
+### PyPI (recommended)
+[![PyPI version](https://badge.fury.io/py/d3rlpy.svg)](https://badge.fury.io/py/d3rlpy)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/d3rlpy)
+
+```
+$ pip install d3rlpy
+```
+
+### More examples around d3rlpy usage:  
 ```py
 import d3rlpy
 
@@ -45,29 +85,6 @@ sac.fit_online(env, n_steps=1000000)
 # ready to control
 actions = sac.predict(x)
 ```
-
-- Documentation: https://d3rlpy.readthedocs.io
-- Paper: https://arxiv.org/abs/2111.03788
-
-## How do I instal d3rlpy? 
-
-d3rlpy supports Linux, macOS and Windows. There are several ways: 
-
-### PyPI (recommended)
-[![PyPI version](https://badge.fury.io/py/d3rlpy.svg)](https://badge.fury.io/py/d3rlpy)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/d3rlpy)
-```
-$ pip install d3rlpy
-```
-### Anaconda
-[![Anaconda-Server Badge](https://anaconda.org/conda-forge/d3rlpy/badges/version.svg)](https://anaconda.org/conda-forge/d3rlpy)
-[![Anaconda-Server Badge](https://anaconda.org/conda-forge/d3rlpy/badges/platforms.svg)](https://anaconda.org/conda-forge/d3rlpy)
-[![Anaconda-Server Badge](https://anaconda.org/conda-forge/d3rlpy/badges/downloads.svg)](https://anaconda.org/conda-forge/d3rlpy)
-```
-$ conda install -c conda-forge d3rlpy
-```
-
-## Show me some more examples ? 
 
 ### MuJoCo
 ```py
@@ -116,7 +133,6 @@ cql.fit(train_episodes,
 See more Atari datasets at [d4rl-atari](https://github.com/takuseno/d4rl-atari).
 
 ### PyBullet
-<p align="center"><img align="center" width="160px" src="assets/hopper.gif"></p>
 
 ```py
 import d3rlpy
@@ -136,14 +152,11 @@ cql.fit(dataset,
             'td_error': d3rlpy.metrics.td_error_scorer
         })
 ```
-
 See more PyBullet datasets at [d4rl-pybullet](https://github.com/takuseno/d4rl-pybullet).
 
 ## How about some tutorials? 
 Try a cartpole example on Google Colaboratory:
-
-- offline RL tutorial: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takuseno/d3rlpy/blob/master/tutorials/cartpole.ipynb)
-
+ * official offline RL tutorial: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takuseno/d3rlpy/blob/master/tutorials/cartpole.ipynb)
 
 ## Citation
 The paper is available [here](https://arxiv.org/abs/2111.03788).
@@ -156,7 +169,3 @@ The paper is available [here](https://arxiv.org/abs/2111.03788).
   year = {2021}
 }
 ```
-## Acknowledgement
-This work is supported by Information-technology Promotion Agency, Japan
-(IPA), Exploratory IT Human Resources Project (MITOU Program) in the fiscal
-year 2020.
