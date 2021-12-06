@@ -69,6 +69,7 @@ def _make_batches(
         batch = TransitionMiniBatch(transitions, n_frames)
         yield batch
 
+
 # Attempt: Calculate the true total discounted reward by taking initial action a in initial state s.
 def true_q_value_scorer(algo: AlgoProtocol, episodes: List[Episode]) -> float:
     for episode in episodes:

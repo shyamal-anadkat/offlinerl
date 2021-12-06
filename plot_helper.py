@@ -9,6 +9,7 @@ import pandas as pd
 ########################################################
 
 def main(args):
+
     # logging for debugging
     print("=========================")
     print("CQL True Q Logs Path:  ", args.cql_true_q_path)
@@ -18,22 +19,22 @@ def main(args):
     print("FQE Estimated Q Logs Path:  ", args.fqe_estimated_q_path)
     print("=========================")
 
-    avg_reward = pd.read_csv(args.cql_reward_path, header=None)
+    avg_reward = pd.read_csv(args.cql_reward_path)
     fig, ax = plt.subplots(2, 2)
 
     ax[0, 0].plot(avg_reward.iloc[:, 0], avg_reward.iloc[:, 2])
     ax[0, 0].set_title('average reward')
 
-    est_q = pd.read_csv(args.cql_estimated_q_path, header=None)
+    est_q = pd.read_csv(args.cql_estimated_q_path)
     ax[0, 1].plot(est_q.iloc[:, 0], est_q.iloc[:, 2])
     ax[0, 1].set_title('estimated q values')
 
-    true_q = pd.read_csv(args.cql_true_q_path, header=None)
+    true_q = pd.read_csv(args.cql_true_q_path)
     ax[1, 0].plot(true_q.iloc[:, 0], true_q.iloc[:, 2])
     ax[1, 0].set_title('true q values')
 
-    fqe_estimated = pd.read_csv(args.fqe_estimated_q_path, header=None)
-    fqe_true = pd.read_csv(args.fqe_true_q_path, header=None)
+    fqe_estimated = pd.read_csv(args.fqe_estimated_q_path)
+    fqe_true = pd.read_csv(args.fqe_true_q_path)
 
     ax[1, 1].plot(fqe_estimated.iloc[:, 0], fqe_estimated.iloc[:, 2])
     ax[1, 1].plot(fqe_true.iloc[:, 0], fqe_true.iloc[:, 2])
