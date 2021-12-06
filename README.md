@@ -1,6 +1,6 @@
 # Deep Reinforcement Learning 
 
-> ### _Shyamal H Anadkat | Fall '21_
+> #### _Shyamal H Anadkat | Fall '21_
 
 Hello! This is a repository for AIPI530 DeepRL final project.
 The goal is to build a pipeline for offline RL. 
@@ -20,28 +20,35 @@ The blog post briefly covers the following:
 > When should we consider applying offline reinforcement learning (and when should not) ? <br/>
 > Have an example of offline reinforcement learning in the real-world <br/>
 
-# Getting Started (_please read carefully_)
+# Getting Started 
+#### (_please read carefully_)
 
 This project is customized to training CQL on a custom dataset in d3rlpy, and training OPE (FQE) to 
 evaluate the trained policy. Important scripts:
-* `cql_train.py`: at the root of the project is the main script, used to train cql & get evaluation scores
-* `plot_helper.py`: utility script to help product the plots required
+1. `cql_train.py`: at the root of the project is the main script, used to train cql & get evaluation scores
+2. `plot_helper.py`: utility script to help product the plots required
 
 ### How do I install & run this project ? 
 
 ---
 1. Clone this repository: `git clone https://github.com/shyamal-anadkat/offlinerl`
+
 2. Install **pybullet** from source: `pip install git+https://github.com/takuseno/d4rl-pybullet`
+
 3. Install requirements: `pip install Cython numpy` & `pip install -e`
+
 4. Execute **`cql_train.py`** found at the root of the project
    * Default dataset is `hopper-bullet-mixed-v0` 
+   * Default no. of `epochs` is `10`. You can change this via custom args `--epochs_cql` & `--epochs_fqe`
    * For example if we want to run for 10 epochs: `python cql_train.py --epochs_cql 10 --epochs_fqe 10` 
    (see colab example below for more clarity)
+
 5. **Important Logs:**
    * Estimated Q values vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/init_value.csv`
    * Average reward vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/environment.csv`
    * True Q values vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/true_q_value.csv`
    * Note: I created my own scorer to calculate the true q values. See `scorer.py` (`true_q_value_scorer`) for implementation details)
+
 6. For plotting, I wrote a utility script which can be executed like so `%run plot_helper.py` at the root of the project. 
    _Note: you can provide arguments that correspond to the path to the logs or it will use the default._ 
 
@@ -78,7 +85,7 @@ which means that you can maximize your productivity with the useful scikit-learn
 $ pip install d3rlpy
 ```
 
-### More examples around d3rlpy usage:  
+## _More examples around d3rlpy usage_ 
 ```py
 import d3rlpy
 
@@ -169,10 +176,14 @@ See more PyBullet datasets at [d4rl-pybullet](https://github.com/takuseno/d4rl-p
 Try a cartpole example on Google Colaboratory:
  * official offline RL tutorial: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takuseno/d3rlpy/blob/master/tutorials/cartpole.ipynb)
 
-## Citation
-> https://github.com/takuseno/d3rlpy.git 
+# _Citation_
+> Thanks to [Takuma Seno](https://github.com/takuseno) and his work on [d3rlpy](https://github.com/takuseno/d3rlpy.git)
+  This wouldn't have been possible without it. 
 
-The paper is available [here](https://arxiv.org/abs/2111.03788).
+>Seno, T., & Imai, M. (2021). d3rlpy: An Offline Deep Reinforcement Learning Library [Conference paper](https://arxiv.org/abs/2111.03788).
+35th Conference on Neural Information Processing Systems, Offline Reinforcement Learning Workshop, 2021
+
+
 ```
 @InProceedings{seno2021d3rlpy,
   author = {Takuma Seno, Michita Imai},
