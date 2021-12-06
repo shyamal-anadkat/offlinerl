@@ -51,9 +51,8 @@ evaluate the trained policy. Important scripts:
 * Format: `./scripts/format`
 * Linting: `./scripts/lint`
 
-### Sample Plots: 
-![img.png](cql_plot.png)
-![img.png](fqe_plot.png)
+### Sample Plots (with 100 epochs): 
+![img.png](plot.png)
 
 ### Examples speak more: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1S5RDTwaqVjA4wAJISxApra_G0ewSuS0R?usp=sharing) 
 
