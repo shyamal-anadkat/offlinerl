@@ -9,7 +9,6 @@ import pandas as pd
 ########################################################
 
 def main(args):
-
     # logging for debugging
     print("=========================")
     print("CQL True Q Logs Path:  ", args.cql_true_q_path)
@@ -20,7 +19,7 @@ def main(args):
     print("=========================")
 
     avg_reward = pd.read_csv(args.cql_reward_path)
-    fig, ax = plt.subplots(2, 2)
+    fig, ax = plt.subplots(2, 2, figsize=(20, 10))
 
     ax[0, 0].plot(avg_reward.iloc[:, 0], avg_reward.iloc[:, 2])
     ax[0, 0].set_title('average reward')
@@ -39,6 +38,7 @@ def main(args):
     ax[1, 1].plot(fqe_estimated.iloc[:, 0], fqe_estimated.iloc[:, 2])
     ax[1, 1].plot(fqe_true.iloc[:, 0], fqe_true.iloc[:, 2])
     ax[1, 1].set_title('fqe true q vs estimated q values')
+    plt.savefig('plot.png')  # save fig
     plt.show()
 
 
