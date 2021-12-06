@@ -15,15 +15,15 @@ Here is a link to my blog post on Reinforcement Learning to get you started:
 
 The blog post briefly covers the following:
 
-> What is reinforcement learning ?
->> What are the pros and cons of reinforcement learning ?
->>> When should we consider applying reinforcement learning (and when should not) ?
->>>> What's the difference between supervised learning and reinforcement learning ?
->>>>> What is offline reinforcement learning ? What are the pros and cons of offline reinforcement learning ?
->>>>>> When should we consider applying offline reinforcement learning (and when should not) ?
->>>>>>> Have an example of offline reinforcement learning in the real-world
+* What is reinforcement learning ? <br/>
+* What are the pros and cons of reinforcement learning ? <br/>
+* When should we consider applying reinforcement learning (and when should not) ? <br/>
+* What's the difference between supervised learning and reinforcement learning ? <br/>
+* What is offline reinforcement learning ? What are the pros and cons of offline reinforcement learning ? <br/>
+* When should we consider applying offline reinforcement learning (and when should not) ? <br/>
+* Have an example of offline reinforcement learning in the real-world <br/>
 
-![img.png](assets/offlinerl.png)
+>![img.png](assets/offlinerl.png)
 _source: https://bair.berkeley.edu/blog/2020/12/07/offline/_
 
 # Getting Started
@@ -66,14 +66,17 @@ python cql_train.py --epochs_cql 10 --epochs_fqe 10
 (see colab example below for more clarity)
 
 5. **Important Logs:**
-    * Estimated Q values vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/init_value.csv`
-    * Average reward vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/environment.csv`
-    * True Q values vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/true_q_value.csv`
-    * Note: I created my own scorer to calculate the true q values. See `scorer.py` (`true_q_value_scorer`) for
+    * Estimated Q values vs training steps (CQL): `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/init_value.csv`
+    * Average reward vs training steps (CQL): `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/environment.csv`
+    * True Q values vs training steps (CQL): `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/true_q_value.csv`
+    * True Q & Estimated Q values vs training steps (FQE): `d3rlpy_logs/FQE_hopper-bullet-mixed-v0_1/..`
+    * Note: **I created my own scorer to calculate the true q values**. See `scorer.py` (`true_q_value_scorer`) for
       implementation details)
 
-6. For plotting, I wrote a utility script which can be executed like so `%run plot_helper.py` at the root of the
-   project.
+6. For plotting, I wrote a utility script (at root of the project) which can be executed like so 
+```
+python plot_helper.py
+```
    _Note: you can provide arguments that correspond to the path to the logs or it will use the default._
 
 * If you're curious here's
@@ -86,7 +89,7 @@ python cql_train.py --epochs_cql 10 --epochs_fqe 10
 
 ### Sample Plots (with 100 epochs):
 
-![img.png](assets/plot.png)
+>![img.png](assets/plot.png)
 
 Note: logs can be found in `/d3rlpy_logs`
 
