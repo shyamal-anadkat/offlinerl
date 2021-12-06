@@ -66,11 +66,14 @@ policy. Important scripts:
 
 ### Sample Plots (with 100 epochs):
 
-![img.png](plot.png)
+![img.png](assets/plot.png)
 
 Note: logs can be found in `/d3rlpy_logs`
 
 ### Examples speak more: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1S5RDTwaqVjA4wAJISxApra_G0ewSuS0R?usp=sharing)
+
+**_Walkthrough:_**
+![walkthrough.gif](assets/offlinerl-project-walkthrough.gif)
 
 ---
 
