@@ -39,6 +39,8 @@ evaluate the trained policy. `cql_train.py` at the root of the project is the ma
    * Average reward vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/environment.csv`
    * True Q values vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/true_q_value.csv`
    (I created my own scorer to calculate the true q values. See `scorer.py` for implementation details)
+6. For plotting, I spun up a helper script `%run plot_helper.py` at the root of the project 
+   Note: you can provide arguments that correspond to the path to the logs or it will use the default. 
    
 
 ### Sample Plots: 

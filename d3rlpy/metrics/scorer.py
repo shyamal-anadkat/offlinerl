@@ -70,7 +70,10 @@ def _make_batches(
         yield batch
 
 
-# Attempt: Calculate the true total discounted reward by taking initial action a in initial state s.
+########################################################
+# Author: Shyamal H Anadkat | AIPI530 | Fall 2021      #
+########################################################
+# Attempt: Calculate the true total discounted reward by taking initial action a in initial state s
 def true_q_value_scorer(algo: AlgoProtocol, episodes: List[Episode]) -> float:
     for episode in episodes:
         for batch in _make_batches(episode, WINDOW_SIZE, algo.n_frames):
