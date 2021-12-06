@@ -1,23 +1,30 @@
 # Deep Reinforcement Learning
 
-> #### _Shyamal H Anadkat | Fall '21_
+---
 
-Hello! This is a repository for AIPI530 DeepRL final project. The goal is to build a pipeline for offline RL. The
+>#### _Shyamal H Anadkat | Fall '21_
+
+# Background 
+Hello! This is a repository for AIPI530 DeepRL final project. **The goal is to build a pipeline for offline RL**. The
 starter code has been forked from [d3rlpy](https://github.com/takuseno/d3rlpy) (_see citation at the bottom_)
+Offline reinforcement learning (RL) defines the task of learning from a fixed batch of data.
 
-Before diving in, I would recommend getting familiarized with basic Reinforcement Learning. Here is a link to my blog
-post on Reinforcement Learning to get you started:
+Before diving in, I would recommend getting familiarized with basic Reinforcement Learning. 
+Here is a link to my blog post on Reinforcement Learning to get you started:
 [RL Primer](https://shyamalanadkat.medium.com/reinforcement-learning-a-primer-29116d487e42)
 
 The blog post briefly covers the following:
 
-> What is reinforcement learning ? <br/>
-> What are the pros and cons of reinforcement learning ? <br/>
-> When should we consider applying reinforcement learning (and when should not) ? <br/>
-> What's the difference between supervised learning and reinforcement learning ? <br/>
-> What is offline reinforcement learning ? What are the pros and cons of offline reinforcement learning ? <br/>
-> When should we consider applying offline reinforcement learning (and when should not) ? <br/>
-> Have an example of offline reinforcement learning in the real-world <br/>
+> What is reinforcement learning ?
+>> What are the pros and cons of reinforcement learning ?
+>>> When should we consider applying reinforcement learning (and when should not) ?
+>>>> What's the difference between supervised learning and reinforcement learning ?
+>>>>> What is offline reinforcement learning ? What are the pros and cons of offline reinforcement learning ?
+>>>>>> When should we consider applying offline reinforcement learning (and when should not) ?
+>>>>>>> Have an example of offline reinforcement learning in the real-world
+
+![img.png](assets/offlinerl.png)
+_source: https://bair.berkeley.edu/blog/2020/12/07/offline/_
 
 # Getting Started
 
@@ -33,17 +40,30 @@ policy. Important scripts:
 
 ---
 
-1. Clone this repository: `git clone https://github.com/shyamal-anadkat/offlinerl`
+**1. Clone this repository**
+```
+git clone https://github.com/shyamal-anadkat/offlinerl
+```
 
-2. Install **pybullet** from source: `pip install git+https://github.com/takuseno/d4rl-pybullet`
+**2. Install **pybullet** from source:**
+```
+pip install git+https://github.com/takuseno/d4rl-pybullet
+```
 
-3. Install requirements: `pip install Cython numpy` & `pip install -e`
+**3. Install requirements:** 
+```
+pip install Cython numpy 
+pip install -e .
+```
 
-4. Execute **`cql_train.py`** found at the root of the project
+4. **Execute **`cql_train.py`** found at the root of the project**
     * Default dataset is `hopper-bullet-mixed-v0`
     * Default no. of `epochs` is `10`. You can change this via custom args `--epochs_cql` & `--epochs_fqe`
-    * For example if we want to run for 10 epochs: `python cql_train.py --epochs_cql 10 --epochs_fqe 10`
-      (see colab example below for more clarity)
+    * For example if we want to run for 10 epochs: 
+```   
+python cql_train.py --epochs_cql 10 --epochs_fqe 10
+```
+(see colab example below for more clarity)
 
 5. **Important Logs:**
     * Estimated Q values vs training steps: `d3rlpy_logs/CQL_hopper-bullet-mixed-v0_1/init_value.csv`
@@ -77,7 +97,7 @@ Note: logs can be found in `/d3rlpy_logs`
 
 ---
 
-## Why d3rlpy?
+# Background on d3rlpy
 
 > d3rlpy is an offline deep reinforcement learning library for practitioners and researchers.
 
@@ -191,7 +211,7 @@ cql.fit(dataset,
 
 See more PyBullet datasets at [d4rl-pybullet](https://github.com/takuseno/d4rl-pybullet).
 
-## How about some tutorials?
+### How about some tutorials?
 
 Try a cartpole example on Google Colaboratory:
 
