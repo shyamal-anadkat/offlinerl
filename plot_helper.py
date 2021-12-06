@@ -18,25 +18,36 @@ def main(args):
     print("FQE Estimated Q Logs Path:  ", args.fqe_estimated_q_path)
     print("=========================")
 
-    avg_reward = pd.read_csv(args.cql_reward_path)
+    avg_reward = pd.read_csv(args.cql_reward_path, header=None)
     fig, ax = plt.subplots(2, 2, figsize=(20, 10))
 
-    ax[0, 0].plot(avg_reward.iloc[:, 0], avg_reward.iloc[:, 2])
+    avg_reward.columns = ["0", "timesteps", "avg reward"]
+    avg_reward = avg_reward[["timesteps", "avg reward"]]
+    ax[0, 0].plot(avg_reward['timesteps'], avg_reward['avg reward'])
     ax[0, 0].set_title('average reward')
 
-    est_q = pd.read_csv(args.cql_estimated_q_path)
-    ax[0, 1].plot(est_q.iloc[:, 0], est_q.iloc[:, 2])
+    est_q = pd.read_csv(args.cql_estimated_q_path, header=None)
+    est_q.columns = ["0", "timesteps", "estimated q"]
+    est_q = est_q[["timesteps", "estimated q"]]
+    ax[0, 1].plot(est_q['timesteps'], est_q['estimated q'])
     ax[0, 1].set_title('estimated q values')
 
-    true_q = pd.read_csv(args.cql_true_q_path)
-    ax[1, 0].plot(true_q.iloc[:, 0], true_q.iloc[:, 2])
+    true_q = pd.read_csv(args.cql_true_q_path, header=None)
+    true_q.columns = ["0", "timesteps", "true q"]
+    true_q = true_q[["timesteps", "true q"]]
+    ax[1, 0].plot(true_q['timesteps'], true_q['true q'])
     ax[1, 0].set_title('true q values')
 
-    fqe_estimated = pd.read_csv(args.fqe_estimated_q_path)
-    fqe_true = pd.read_csv(args.fqe_true_q_path)
+    fqe_estimated = pd.read_csv(args.fqe_estimated_q_path, header=None)
+    fqe_estimated.columns = ["0", "timesteps", "estimated q(fqe)"]
+    fqe_estimated = fqe_estimated[["timesteps", "estimated q(fqe)"]]
 
-    ax[1, 1].plot(fqe_estimated.iloc[:, 0], fqe_estimated.iloc[:, 2])
-    ax[1, 1].plot(fqe_true.iloc[:, 0], fqe_true.iloc[:, 2])
+    fqe_true = pd.read_csv(args.fqe_true_q_path, header=None)
+    fqe_true.columns = ["0", "timesteps", "true q(fqe)"]
+    fqe_true = fqe_true[["timesteps", "true q(fqe)"]]
+
+    ax[1, 1].plot(fqe_estimated['timesteps'], fqe_estimated['estimated q(fqe)'])
+    ax[1, 1].plot(fqe_true['timesteps'], fqe_true['true q(fqe)'])
     ax[1, 1].set_title('fqe true q vs estimated q values')
     plt.savefig('plot.png')  # save fig
     plt.show()
