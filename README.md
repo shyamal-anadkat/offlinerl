@@ -1,7 +1,4 @@
 # Deep Reinforcement Learning
-
----
-
 >#### _Shyamal H Anadkat | Fall '21_
 
 # Background 
@@ -34,7 +31,7 @@ This project is customized to training CQL on a custom dataset in d3rlpy, and tr
 policy. Important scripts:
 
 1. `cql_train.py`: at the root of the project is the main script, used to train cql & get evaluation scores
-2. `plot_helper.py`: utility script to help product the plots required
+2. `plot_helper.py`: utility script to help produce the plots required
 
 ### How do I install & run this project ?
 
